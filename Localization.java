@@ -1,5 +1,3 @@
-package fr.shape.*;
-
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -86,7 +84,7 @@ public final class Localization {
         } else {
             plugin.getLogger().warning("Missing translation key: " + key + " in lang: " + lang);
         }
-        return "";
+        return "N/A";
     }
 
     public static String get(Player player, String key) {
