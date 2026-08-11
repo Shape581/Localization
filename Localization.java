@@ -118,13 +118,13 @@ public final class Localization {
         return get(player.locale(), key, placeholders);
     }
 
-    public static String get(Locale locale, String key, String... placeHolders) {
-        if (placeHolders.length % 2 != 0) {
+    public static String get(Locale locale, String key, String... placeholders) {
+        if (placeholders.length % 2 != 0) {
             return get(locale, key);
         } else {
-            Map<String, String> placeholders = new HashMap<>();
-            for (int i = 0; i < placeHolders.length; i += 2) {
-                placeholders.put(placeHolders[i], placeHolders[i + 1]);
+            Map<String, String> placeholdersMap = new HashMap<>();
+            for (int i = 0; i < placeholders.length; i += 2) {
+                placeholdersMap.put(placeholders[i], placeholders[i + 1]);
             }
             return get(locale, key, placeholders);
         }
