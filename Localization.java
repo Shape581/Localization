@@ -102,8 +102,12 @@ public final class Localization {
         if (langConfig.contains(key)) {
             String translation = langConfig.getString(key);
             for (Map.Entry<String, String> entry : placeholders.entrySet()) {
-                if (entry.getKey() == null || entry.getValue() == null) {
+                if (entry.getKey() == null) {
+                    continue;
+                }
+                if (entry.getValue() == null) {
                     translation = translation.replace("%" + entry.getKey() + "%", "Err");
+                    continue;
                 }
                 translation = translation.replace("%" + entry.getKey() + "%", entry.getValue());
             }
@@ -126,7 +130,7 @@ public final class Localization {
             for (int i = 0; i < placeholders.length; i += 2) {
                 placeholdersMap.put(placeholders[i], placeholders[i + 1]);
             }
-            return get(locale, key, placeholders);
+            return get(locale, key, placeholdersMap);
         }
     }
 
