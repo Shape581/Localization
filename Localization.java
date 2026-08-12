@@ -1,3 +1,4 @@
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -91,6 +92,14 @@ public final class Localization {
         return get(player.locale(), key);
     }
 
+    public static String get(CommandSender sender, String key) {
+        if (sender instanceof Player player) {
+            return get(player, key);
+        } else {
+            return get(Locale.ENGLISH, key);
+        }
+    }
+
     public static String get(Locale locale, String key, Map<String, String> placeholders) {
         String lang = locale.getLanguage();
         FileConfiguration langConfig = langs.get(lang);
@@ -120,6 +129,14 @@ public final class Localization {
         return get(player.locale(), key, placeholders);
     }
 
+    public static String get(CommandSender sender, String key, Map<String, String> placeholders) {
+        if (sender instanceof Player player) {
+            return get(player, key, placeholders);
+        } else {
+            return get(Locale.ENGLISH, key, placeholders);
+        }
+    }
+
     public static String get(Locale locale, String key, String... placeholders) {
         if (placeholders.length % 2 != 0) {
             return get(locale, key);
@@ -134,5 +151,13 @@ public final class Localization {
 
     public static String get(Player player, String key, String... placeHolders) {
         return get(player.locale(), key, placeHolders);
+    }
+
+    public static String get(CommandSender sender, String key, String... placeHolders) {
+        if (sender instanceof Player player) {
+            return get(player, key, placeHolders);
+        } else {
+            return get(Locale.ENGLISH, key, placeHolders);
+        }
     }
 }
